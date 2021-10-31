@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.1.0...v0.1.1) (2021-10-31)
+
+
+### Bug Fixes
+
+* add static method to the doc block ([de3809f](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/de3809fde0faf4d0242522397082ce0542b6e1e7))
+
 ## [0.1.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.0.1...v0.1.0) (2021-10-31)
 
 
