@@ -8,6 +8,8 @@
 
 namespace BrokeYourBike\FidelityBank\Tests;
 
+use Carbon\Carbon;
+
 /**
  * @author Ivan Stasiuk <brokeyourbike@gmail.com>
  */
@@ -25,5 +27,10 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
             [true],
             [false],
         ];
+    }
+
+    protected function prepareSecretCode(string $username, string $password): string|false
+    {
+        return openssl_digest($username . Carbon::now()->format('Ymd') . $password, 'SHA256', false);
     }
 }
