@@ -60,7 +60,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
 
         return $this->performRequest(HttpMethodEnum::POST(), 'payment/deposit', [
             'RequestID' => $this->prepareRequestId($transaction),
-            'Pin' => $transaction->reference,
+            'Pin' => $transaction->getReference(),
             'DateTimeLocal' => (string) Carbon::now()->toISOString(),
             'DateTimeUTC' => (string) Carbon::now()->setTimezone('UTC')->toISOString(),
             'TransactionDate' => $transaction->getDate()->toISOString(),
