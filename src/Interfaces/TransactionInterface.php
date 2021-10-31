@@ -8,10 +8,23 @@
 
 namespace BrokeYourBike\FidelityBank\Interfaces;
 
+use BrokeYourBike\FidelityBank\Interfaces\SenderInterface;
+use BrokeYourBike\FidelityBank\Interfaces\RecipientInterface;
+
 /**
  * @author Ivan Stasiuk <brokeyourbike@gmail.com>
  */
 interface TransactionInterface
 {
+    public function getSender(): ?SenderInterface;
+    public function getRecipient(): ?RecipientInterface;
     public function getReference(): string;
+    public function getRequestSuffix(): int;
+    public function getDate(): \Carbon\CarbonInterface;
+    public function getSendAmount(): float;
+    public function getSendCurrencyCode(): string;
+    public function getReceiveAmount(): float;
+    public function getReceiveCurrencyCode(): string;
+    public function getAccountNumber(): string;
+    public function getBankCode(): string;
 }
