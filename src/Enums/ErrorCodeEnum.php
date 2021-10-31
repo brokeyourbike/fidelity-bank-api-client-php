@@ -19,6 +19,7 @@ namespace BrokeYourBike\FidelityBank\Enums;
  * @method static ErrorCode DUPLICATE_TRANSACTION()
  * @method static ErrorCode INVALID_RECIPIENT()
  * @method static ErrorCode AUTH_FAILED()
+ * @method static ErrorCode SYSTEM_EXCEPTION()
  * @method static ErrorCode SYSTEM_MALFUNCTION()
  * @method static ErrorCode IN_PROGRESS()
  * @method static ErrorCode NAME_MISMATCH()
