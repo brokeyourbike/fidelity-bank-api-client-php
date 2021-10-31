@@ -21,8 +21,8 @@ composer require brokeyourbike/fidelity-bank-api-client
 ```php
 use BrokeYourBike\FidelityBank\Client;
 
-$apiClient = new Client($config, $httpClient, $psrCache);
-$apiClient->fetchAuthTokenRaw();
+$apiClient = new Client($config, $httpClient);
+$apiClient->getTransactionStatus($transaction);
 ```
 
 ## License
