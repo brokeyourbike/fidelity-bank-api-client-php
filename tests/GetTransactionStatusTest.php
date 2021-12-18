@@ -33,11 +33,8 @@ class GetTransactionStatusTest extends TestCase
         Carbon::setTestNow($currentTestDate);
     }
 
-    /**
-     * @test
-     * @dataProvider isLiveProvider
-     */
-    public function it_can_prepare_request(bool $isLive): void
+    /** @test */
+    public function it_can_prepare_request(): void
     {
         $transaction = $this->getMockBuilder(TransactionInterface::class)->getMock();
         $transaction->method('getReference')->willReturn($this->reference);
@@ -48,7 +45,6 @@ class GetTransactionStatusTest extends TestCase
         $secretCode = $this->prepareSecretCode($this->username, $this->password);
 
         $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('isLive')->willReturn($isLive);
         $mockedConfig->method('getUrl')->willReturn('https://api.example/');
         $mockedConfig->method('getUsername')->willReturn($this->username);
         $mockedConfig->method('getPassword')->willReturn($this->password);
@@ -92,11 +88,8 @@ class GetTransactionStatusTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $requestResult);
     }
 
-    /**
-     * @test
-     * @dataProvider isLiveProvider
-     */
-    public function it_will_pass_source_model_as_option(bool $isLive): void
+    /** @test */
+    public function it_will_pass_source_model_as_option(): void
     {
         $transaction = $this->getMockBuilder(SourceTransactionFixture::class)->getMock();
         $transaction->method('getReference')->willReturn($this->reference);
@@ -107,7 +100,6 @@ class GetTransactionStatusTest extends TestCase
         $secretCode = $this->prepareSecretCode($this->username, $this->password);
 
         $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('isLive')->willReturn($isLive);
         $mockedConfig->method('getUrl')->willReturn('https://api.example/');
         $mockedConfig->method('getUsername')->willReturn($this->username);
         $mockedConfig->method('getPassword')->willReturn($this->password);

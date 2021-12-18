@@ -1,0 +1,112 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:ACCOUNT_NOT_FOUND is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:AUTH_FAILED is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:DUPLICATE_TRANSACTION is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INSUFFICIENT_FUNDS is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_ACCOUNT is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_ACCOUNT_STATUS is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_BANK is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_BANK_CODE is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_PIN is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:INVALID_RECIPIENT is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:IN_PROGRESS is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:NAME_MISMATCH is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:NOT_PERMITTED is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:PAID is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:SYSTEM_EXCEPTION is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:SYSTEM_MALFUNCTION is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\ErrorCodeEnum\\:\\:TRANSACTION_LIMIT is unused\\.$#"
+			count: 1
+			path: src/Enums/ErrorCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\StatusCodeEnum\\:\\:CANCELED is unused\\.$#"
+			count: 1
+			path: src/Enums/StatusCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\StatusCodeEnum\\:\\:ERROR is unused\\.$#"
+			count: 1
+			path: src/Enums/StatusCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\StatusCodeEnum\\:\\:IN_PROGRESS is unused\\.$#"
+			count: 1
+			path: src/Enums/StatusCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\StatusCodeEnum\\:\\:PAID is unused\\.$#"
+			count: 1
+			path: src/Enums/StatusCodeEnum.php
+
+		-
+			message: "#^Constant BrokeYourBike\\\\FidelityBank\\\\Enums\\\\StatusCodeEnum\\:\\:TRANSMIT is unused\\.$#"
+			count: 1
+			path: src/Enums/StatusCodeEnum.php
+

@@ -91,11 +91,8 @@ class SendTransactionTest extends TestCase
         $api->sendTransaction($transaction);
     }
 
-    /**
-     * @test
-     * @dataProvider isLiveProvider
-     */
-    public function it_can_prepare_request(bool $isLive): void
+    /** @test */
+    public function it_can_prepare_request(): void
     {
         $transaction = $this->getMockBuilder(TransactionInterface::class)->getMock();
         $transaction->method('getSender')->willReturn($this->sender);
@@ -110,7 +107,6 @@ class SendTransactionTest extends TestCase
         $requestId = $this->username . Carbon::now()->format('YmdHis') . sprintf('%04d', $transaction->getRequestSuffix());
 
         $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('isLive')->willReturn($isLive);
         $mockedConfig->method('getUrl')->willReturn('https://api.example/');
         $mockedConfig->method('getUsername')->willReturn($this->username);
         $mockedConfig->method('getPassword')->willReturn($this->password);
@@ -184,11 +180,8 @@ class SendTransactionTest extends TestCase
         $this->assertInstanceOf(ResponseInterface::class, $requestResult);
     }
 
-    /**
-     * @test
-     * @dataProvider isLiveProvider
-     */
-    public function it_will_pass_source_model_as_option(bool $isLive): void
+    /** @test */
+    public function it_will_pass_source_model_as_option(): void
     {
         $transaction = $this->getMockBuilder(SourceTransactionFixture::class)->getMock();
         $transaction->method('getSender')->willReturn($this->sender);
@@ -203,7 +196,6 @@ class SendTransactionTest extends TestCase
         $requestId = $this->username . Carbon::now()->format('YmdHis') . sprintf('%04d', $transaction->getRequestSuffix());
 
         $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('isLive')->willReturn($isLive);
         $mockedConfig->method('getUrl')->willReturn('https://api.example/');
         $mockedConfig->method('getUsername')->willReturn($this->username);
         $mockedConfig->method('getPassword')->willReturn($this->password);

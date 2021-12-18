@@ -21,14 +21,6 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         \Mockery::close();
     }
 
-    public function isLiveProvider(): array
-    {
-        return [
-            [true],
-            [false],
-        ];
-    }
-
     protected function prepareSecretCode(string $username, string $password): string|false
     {
         return openssl_digest($username . Carbon::now()->format('Ymd') . $password, 'SHA256', false);

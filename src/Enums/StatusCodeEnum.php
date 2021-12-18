@@ -11,11 +11,11 @@ namespace BrokeYourBike\FidelityBank\Enums;
 /**
  * @author Ivan Stasiuk <brokeyourbike@gmail.com>
  *
- * @method static StatusCode TRANSMIT()
- * @method static StatusCode IN_PROGRESS()
- * @method static StatusCode PAID()
- * @method static StatusCode CANCELED()
- * @method static StatusCode ERROR()
+ * @method static StatusCodeEnum TRANSMIT()
+ * @method static StatusCodeEnum IN_PROGRESS()
+ * @method static StatusCodeEnum PAID()
+ * @method static StatusCodeEnum CANCELED()
+ * @method static StatusCodeEnum ERROR()
  * @psalm-immutable
  */
 final class StatusCodeEnum extends \MyCLabs\Enum\Enum
