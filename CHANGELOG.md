@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.1.1...v0.2.0) (2021-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove `isLive`
+
+### Bug Fixes
+
+* remove `isLive` ([6fc51de](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/6fc51dea9a004268dc3aca4cf2ced5a4a001cecf))
+
 ### [0.1.1](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.1.0...v0.1.1) (2021-10-31)
 
 
