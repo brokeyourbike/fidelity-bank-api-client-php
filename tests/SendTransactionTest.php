@@ -1,6 +1,6 @@
 <?php
 
-// Copyright (C) 2021 Ivan Stasiuk <brokeyourbike@gmail.com>.
+// Copyright (C) 2021 Ivan Stasiuk <ivan@stasi.uk>.
 //
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -20,7 +20,7 @@ use BrokeYourBike\FidelityBank\Enums\ErrorCodeEnum;
 use BrokeYourBike\FidelityBank\Client;
 
 /**
- * @author Ivan Stasiuk <brokeyourbike@gmail.com>
+ * @author Ivan Stasiuk <ivan@stasi.uk>
  */
 class SendTransactionTest extends TestCase
 {
@@ -117,8 +117,8 @@ class SendTransactionTest extends TestCase
             ->willReturn('{
                 "Pin": "' . $transaction->getReference() . '",
                 "AccountNumber": "' . $transaction->getAccountNumber() . '",
-                "Status": "' . (string) StatusCodeEnum::TRANSMIT() . '",
-                "ResponseCode": "' . (string) ErrorCodeEnum::IN_PROGRESS() . '",
+                "Status": "' . StatusCodeEnum::TRANSMIT->value . '",
+                "ResponseCode": "' . ErrorCodeEnum::IN_PROGRESS->value . '",
                 "ResponseMessage": "Request In Progress"
             }');
 
@@ -128,7 +128,6 @@ class SendTransactionTest extends TestCase
             'POST',
             'https://api.example/payment/deposit',
             [
-                \GuzzleHttp\RequestOptions::HTTP_ERRORS => false,
                 \GuzzleHttp\RequestOptions::HEADERS => [
                     'Accept' => 'application/json',
                     'API_KEY' => $this->username,
@@ -206,7 +205,6 @@ class SendTransactionTest extends TestCase
             'POST',
             'https://api.example/payment/deposit',
             [
-                \GuzzleHttp\RequestOptions::HTTP_ERRORS => false,
                 \GuzzleHttp\RequestOptions::HEADERS => [
                     'Accept' => 'application/json',
                     'API_KEY' => $this->username,

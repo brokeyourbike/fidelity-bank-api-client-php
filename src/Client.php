@@ -1,6 +1,6 @@
 <?php
 
-// Copyright (C) 2021 Ivan Stasiuk <brokeyourbike@gmail.com>.
+// Copyright (C) 2021 Ivan Stasiuk <ivan@stasi.uk>.
 //
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -25,7 +25,7 @@ use BrokeYourBike\FidelityBank\Interfaces\ConfigInterface;
 use BrokeYourBike\FidelityBank\Exceptions\PrepareRequestException;
 
 /**
- * @author Ivan Stasiuk <brokeyourbike@gmail.com>
+ * @author Ivan Stasiuk <ivan@stasi.uk>
  */
 class Client implements HttpClientInterface, HasSourceModelInterface
 {
@@ -58,7 +58,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             $this->setSourceModel($transaction);
         }
 
-        return $this->performRequest(HttpMethodEnum::POST(), 'payment/deposit', [
+        return $this->performRequest(HttpMethodEnum::POST, 'payment/deposit', [
             'RequestID' => $this->prepareRequestId($transaction),
             'Pin' => $transaction->getReference(),
             'DateTimeLocal' => (string) Carbon::now()->toISOString(),
@@ -99,7 +99,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             $this->setSourceModel($transaction);
         }
 
-        return $this->performRequest(HttpMethodEnum::GET(), 'payment/status', [
+        return $this->performRequest(HttpMethodEnum::GET, 'payment/status', [
             'pin' => $transaction->getReference(),
         ]);
     }
@@ -114,27 +114,26 @@ class Client implements HttpClientInterface, HasSourceModelInterface
      */
     private function performRequest(HttpMethodEnum $method, string $uri, array $data): ResponseInterface
     {
+        $option = match($method) {
+            HttpMethodEnum::GET => \GuzzleHttp\RequestOptions::QUERY,
+            default => \GuzzleHttp\RequestOptions::JSON,
+        };
+
         $options = [
-            \GuzzleHttp\RequestOptions::HTTP_ERRORS => false,
             \GuzzleHttp\RequestOptions::HEADERS => [
                 'Accept' => 'application/json',
                 'API_KEY' => $this->config->getUsername(),
                 'SECRET_CODE' => (string) $this->prepareSecretCode(),
             ],
+            $option => $data,
         ];
-
-        if (HttpMethodEnum::GET()->equals($method)) {
-            $options[\GuzzleHttp\RequestOptions::QUERY] = $data;
-        } elseif (HttpMethodEnum::POST()->equals($method)) {
-            $options[\GuzzleHttp\RequestOptions::JSON] = $data;
-        }
 
         if ($this->getSourceModel()) {
             $options[\BrokeYourBike\HasSourceModel\Enums\RequestOptions::SOURCE_MODEL] = $this->getSourceModel();
         }
 
         $uri = (string) $this->resolveUriFor($this->config->getUrl(), $uri);
-        return $this->httpClient->request((string) $method, $uri, $options);
+        return $this->httpClient->request($method->value, $uri, $options);
     }
 
     private function prepareSecretCode(): string|false

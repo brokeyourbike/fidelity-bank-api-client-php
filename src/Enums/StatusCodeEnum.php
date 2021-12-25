@@ -1,6 +1,6 @@
 <?php
 
-// Copyright (C) 2021 Ivan Stasiuk <brokeyourbike@gmail.com>.
+// Copyright (C) 2021 Ivan Stasiuk <ivan@stasi.uk>.
 //
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this file,
@@ -9,39 +9,32 @@
 namespace BrokeYourBike\FidelityBank\Enums;
 
 /**
- * @author Ivan Stasiuk <brokeyourbike@gmail.com>
- *
- * @method static StatusCodeEnum TRANSMIT()
- * @method static StatusCodeEnum IN_PROGRESS()
- * @method static StatusCodeEnum PAID()
- * @method static StatusCodeEnum CANCELED()
- * @method static StatusCodeEnum ERROR()
- * @psalm-immutable
+ * @author Ivan Stasiuk <ivan@stasi.uk>
  */
-final class StatusCodeEnum extends \MyCLabs\Enum\Enum
+enum StatusCodeEnum: string
 {
     /**
      * Transaction transmit.
      */
-    private const TRANSMIT = 'TRANSMIT';
+    case TRANSMIT = 'TRANSMIT';
 
     /**
      * Beneficiary payment in progress.
      */
-    private const IN_PROGRESS = 'IN_PROGRESS';
+    case IN_PROGRESS = 'IN_PROGRESS';
 
     /**
      * Transaction paid.
      */
-    private const PAID = 'PAID';
+    case PAID = 'PAID';
 
     /**
      * Transaction has been canceled.
      */
-    private const CANCELED = 'CANCELLED';
+    case CANCELED = 'CANCELLED';
 
     /**
      * Transaction failed.
      */
-    private const ERROR = 'ERROR';
+    case ERROR = 'ERROR';
 }
