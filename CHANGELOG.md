@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.2.0...v0.3.0) (2021-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* use native enums
+
+### Bug Fixes
+
+* use native enums ([364250f](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/364250ff0e1b44a54a4b484402e9948cde0d51b2))
+
 ## [0.2.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.1.1...v0.2.0) (2021-12-19)
 
 
