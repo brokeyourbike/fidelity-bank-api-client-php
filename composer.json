@@ -35,7 +35,7 @@
         "brokeyourbike/http-enums": "^2.0",
         "brokeyourbike/has-source-model": "^2.0",
         "nesbot/carbon": "^2",
-        "brokeyourbike/data-transfer-object": "^0.1.1"
+        "brokeyourbike/data-transfer-object": "^0.2"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
