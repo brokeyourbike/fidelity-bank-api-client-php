@@ -10,6 +10,7 @@ namespace BrokeYourBike\FidelityBank\Tests;
 
 use Psr\Http\Message\ResponseInterface;
 use Carbon\Carbon;
+use BrokeYourBike\FidelityBank\Models\TransactionResponse;
 use BrokeYourBike\FidelityBank\Interfaces\TransactionInterface;
 use BrokeYourBike\FidelityBank\Interfaces\SenderInterface;
 use BrokeYourBike\FidelityBank\Interfaces\RecipientInterface;
@@ -176,84 +177,6 @@ class SendTransactionTest extends TestCase
         $api = new Client($mockedConfig, $mockedClient);
         $requestResult = $api->sendTransaction($transaction);
 
-        $this->assertInstanceOf(ResponseInterface::class, $requestResult);
-    }
-
-    /** @test */
-    public function it_will_pass_source_model_as_option(): void
-    {
-        $transaction = $this->getMockBuilder(SourceTransactionFixture::class)->getMock();
-        $transaction->method('getSender')->willReturn($this->sender);
-        $transaction->method('getRecipient')->willReturn($this->recipient);
-        $transaction->method('getDate')->willReturn(Carbon::now());
-
-        /** @var TransactionInterface $transaction */
-        $this->assertInstanceOf(TransactionInterface::class, $transaction);
-
-        $secretCode = $this->prepareSecretCode($this->username, $this->password);
-
-        $requestId = $this->username . Carbon::now()->format('YmdHis') . sprintf('%04d', $transaction->getRequestSuffix());
-
-        $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('getUrl')->willReturn('https://api.example/');
-        $mockedConfig->method('getUsername')->willReturn($this->username);
-        $mockedConfig->method('getPassword')->willReturn($this->password);
-
-        /** @var \Mockery\MockInterface $mockedClient */
-        $mockedClient = \Mockery::mock(\GuzzleHttp\Client::class);
-        $mockedClient->shouldReceive('request')->withArgs([
-            'POST',
-            'https://api.example/payment/deposit',
-            [
-                \GuzzleHttp\RequestOptions::HEADERS => [
-                    'Accept' => 'application/json',
-                    'API_KEY' => $this->username,
-                    'SECRET_CODE' => (string) $secretCode,
-                ],
-                \GuzzleHttp\RequestOptions::JSON => [
-                    'RequestID' => $requestId,
-                    'Pin' => $transaction->getReference(),
-                    'DateTimeLocal' => (string) Carbon::now()->toISOString(),
-                    'DateTimeUTC' => (string) Carbon::now()->setTimezone('UTC')->toISOString(),
-                    'TransactionDate' => $transaction->getDate()->toISOString(),
-                    'SendAmount' => $transaction->getSendAmount(),
-                    'SendAmountCurrency' => $transaction->getSendCurrencyCode(),
-                    'ReceiveAmount' => $transaction->getReceiveAmount(),
-                    'ReceiveAmountCurrency' => $transaction->getReceiveCurrencyCode(),
-                    'AccountNumber' => $transaction->getAccountNumber(),
-                    'BankCode' => $transaction->getBankCode(),
-
-                    'SenderFirstName' => $this->sender->getFirstName(),
-                    'SenderMiddleName' => $this->sender->getMiddleName(),
-                    'SenderLastName' => $this->sender->getLastName(),
-                    'SenderAddress' =>'-',
-                    'SenderCity' => '-',
-                    'SenderState' => '-',
-                    'SenderCountry' => $this->sender->getCountryCode(),
-                    'SenderPhoneNo' => '-',
-                    'SenderZip' => '-',
-
-                    'ReceiverFirstName' => $this->recipient->getFirstName(),
-                    'ReceiverMiddleName' => $this->recipient->getMiddleName(),
-                    'ReceiverLastName' => $this->recipient->getLastName(),
-                    'ReceiverAddress' => '-',
-                    'ReceiverCity' => '-',
-                    'ReceiverState' => '-',
-                    'ReceiverCountry' => $this->recipient->getCountryCode(),
-                    'ReceiverPhoneNo' => '-',
-                    'ReceiverZip' => '-',
-                ],
-                \BrokeYourBike\HasSourceModel\Enums\RequestOptions::SOURCE_MODEL => $transaction,
-            ],
-        ])->once();
-
-        /**
-         * @var ConfigInterface $mockedConfig
-         * @var \GuzzleHttp\Client $mockedClient
-         * */
-        $api = new Client($mockedConfig, $mockedClient);
-        $requestResult = $api->sendTransaction($transaction);
-
-        $this->assertInstanceOf(ResponseInterface::class, $requestResult);
+        $this->assertInstanceOf(TransactionResponse::class, $requestResult);
     }
 }

@@ -10,6 +10,7 @@ namespace BrokeYourBike\FidelityBank\Tests;
 
 use Psr\Http\Message\ResponseInterface;
 use Carbon\Carbon;
+use BrokeYourBike\FidelityBank\Models\TransactionResponse;
 use BrokeYourBike\FidelityBank\Interfaces\TransactionInterface;
 use BrokeYourBike\FidelityBank\Interfaces\ConfigInterface;
 use BrokeYourBike\FidelityBank\Enums\StatusCodeEnum;
@@ -84,50 +85,6 @@ class GetTransactionStatusTest extends TestCase
         $api = new Client($mockedConfig, $mockedClient);
         $requestResult = $api->getTransactionStatus($transaction);
 
-        $this->assertInstanceOf(ResponseInterface::class, $requestResult);
-    }
-
-    /** @test */
-    public function it_will_pass_source_model_as_option(): void
-    {
-        $transaction = $this->getMockBuilder(SourceTransactionFixture::class)->getMock();
-        $transaction->method('getReference')->willReturn($this->reference);
-
-        /** @var TransactionInterface $transaction */
-        $this->assertInstanceOf(TransactionInterface::class, $transaction);
-
-        $secretCode = $this->prepareSecretCode($this->username, $this->password);
-
-        $mockedConfig = $this->getMockBuilder(ConfigInterface::class)->getMock();
-        $mockedConfig->method('getUrl')->willReturn('https://api.example/');
-        $mockedConfig->method('getUsername')->willReturn($this->username);
-        $mockedConfig->method('getPassword')->willReturn($this->password);
-
-        /** @var \Mockery\MockInterface $mockedClient */
-        $mockedClient = \Mockery::mock(\GuzzleHttp\Client::class);
-        $mockedClient->shouldReceive('request')->withArgs([
-            'GET',
-            'https://api.example/payment/status',
-            [
-                \GuzzleHttp\RequestOptions::HEADERS => [
-                    'Accept' => 'application/json',
-                    'API_KEY' => $this->username,
-                    'SECRET_CODE' => (string) $secretCode,
-                ],
-                \GuzzleHttp\RequestOptions::QUERY => [
-                    'pin' => $this->reference,
-                ],
-                \BrokeYourBike\HasSourceModel\Enums\RequestOptions::SOURCE_MODEL => $transaction,
-            ],
-        ])->once();
-
-        /**
-         * @var ConfigInterface $mockedConfig
-         * @var \GuzzleHttp\Client $mockedClient
-         * */
-        $api = new Client($mockedConfig, $mockedClient);
-        $requestResult = $api->getTransactionStatus($transaction);
-
-        $this->assertInstanceOf(ResponseInterface::class, $requestResult);
+        $this->assertInstanceOf(TransactionResponse::class, $requestResult);
     }
 }

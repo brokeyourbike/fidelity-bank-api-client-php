@@ -20,6 +20,10 @@ composer require brokeyourbike/fidelity-bank-api-client
 
 ```php
 use BrokeYourBike\FidelityBank\Client;
+use BrokeYourBike\FidelityBank\Interfaces\ConfigInterface;
+
+assert($config instanceof ConfigInterface);
+assert($httpClient instanceof \GuzzleHttp\ClientInterface);
 
 $apiClient = new Client($config, $httpClient);
 $apiClient->getTransactionStatus($transaction);

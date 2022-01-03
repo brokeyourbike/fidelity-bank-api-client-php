@@ -18,6 +18,7 @@ use BrokeYourBike\HttpClient\HttpClientInterface;
 use BrokeYourBike\HasSourceModel\SourceModelInterface;
 use BrokeYourBike\HasSourceModel\HasSourceModelTrait;
 use BrokeYourBike\HasSourceModel\HasSourceModelInterface;
+use BrokeYourBike\FidelityBank\Models\TransactionResponse;
 use BrokeYourBike\FidelityBank\Interfaces\TransactionInterface;
 use BrokeYourBike\FidelityBank\Interfaces\SenderInterface;
 use BrokeYourBike\FidelityBank\Interfaces\RecipientInterface;
@@ -41,7 +42,12 @@ class Client implements HttpClientInterface, HasSourceModelInterface
         $this->httpClient = $httpClient;
     }
 
-    public function sendTransaction(TransactionInterface $transaction): ResponseInterface
+    public function getConfig(): ConfigInterface
+    {
+        return $this->config;
+    }
+
+    public function sendTransaction(TransactionInterface $transaction): TransactionResponse
     {
         $sender = $transaction->getSender();
         $recipient = $transaction->getRecipient();
@@ -58,7 +64,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             $this->setSourceModel($transaction);
         }
 
-        return $this->performRequest(HttpMethodEnum::POST, 'payment/deposit', [
+        $response = $this->performRequest(HttpMethodEnum::POST, 'payment/deposit', [
             'RequestID' => $this->prepareRequestId($transaction),
             'Pin' => $transaction->getReference(),
             'DateTimeLocal' => (string) Carbon::now()->toISOString(),
@@ -91,17 +97,21 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             'ReceiverPhoneNo' => $recipient->getPhoneNumber() ?? '-',
             'ReceiverZip' => $recipient->getPostalCode() ?? '-',
         ]);
+
+        return new TransactionResponse($response);
     }
 
-    public function getTransactionStatus(TransactionInterface $transaction): ResponseInterface
+    public function getTransactionStatus(TransactionInterface $transaction): TransactionResponse
     {
         if ($transaction instanceof SourceModelInterface) {
             $this->setSourceModel($transaction);
         }
 
-        return $this->performRequest(HttpMethodEnum::GET, 'payment/status', [
+        $response = $this->performRequest(HttpMethodEnum::GET, 'payment/status', [
             'pin' => $transaction->getReference(),
         ]);
+
+        return new TransactionResponse($response);
     }
 
     /**
@@ -123,7 +133,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             \GuzzleHttp\RequestOptions::HEADERS => [
                 'Accept' => 'application/json',
                 'API_KEY' => $this->config->getUsername(),
-                'SECRET_CODE' => (string) $this->prepareSecretCode(),
+                'SECRET_CODE' => $this->prepareSecretCode(),
             ],
             $option => $data,
         ];
@@ -136,7 +146,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
         return $this->httpClient->request($method->value, $uri, $options);
     }
 
-    private function prepareSecretCode(): string|false
+    private function prepareSecretCode(): string
     {
         $secretCodeData = [
             $this->config->getUsername(),
@@ -144,7 +154,7 @@ class Client implements HttpClientInterface, HasSourceModelInterface
             $this->config->getPassword(),
         ];
 
-        return openssl_digest(implode('', $secretCodeData), 'SHA256', false);
+        return hash('sha256', implode('', $secretCodeData), false);
     }
 
     private function prepareRequestId(TransactionInterface $transaction): string
