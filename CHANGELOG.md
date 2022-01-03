@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.3.1...v0.4.0) (2022-01-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* improve client responses
+
+### Bug Fixes
+
+* improve client responses ([e1e5187](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/e1e51873159af411bbc50068caec3aaf000db8a2))
+
 ### [0.3.1](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.3.0...v0.3.1) (2022-01-02)
 
 
