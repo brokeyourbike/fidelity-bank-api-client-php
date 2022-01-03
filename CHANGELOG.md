@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.4.0...v0.4.1) (2022-01-03)
+
+
+### Bug Fixes
+
+* update `brokeyourbike/data-transfer-object` ([c23bd9f](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/c23bd9fe03c72fa9d8ccbafe37722b64dfa51c1f))
+
 ## [0.4.0](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.3.1...v0.4.0) (2022-01-03)
 
 
