@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.4.2](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.4.1...v0.4.2) (2023-05-14)
+
+
+### Miscellaneous Chores
+
+* allow bin ([9c4337e](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/9c4337e3fa7db7310933126eed2325df83eb471b))
+* badges ([bfb78b3](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/bfb78b367f08d45207663a6f125e34420fed2bbf))
+
 ### [0.4.1](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.4.0...v0.4.1) (2022-01-03)
 
 
