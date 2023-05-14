@@ -42,5 +42,10 @@
         "phpunit/phpunit": "^9",
         "mockery/mockery": "^1.4"
     },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        }
+    },
     "version": "0.4.1"
 }
