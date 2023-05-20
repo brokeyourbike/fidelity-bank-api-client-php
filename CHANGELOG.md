@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.3](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.4.2...v0.4.3) (2023-05-20)
+
+
+### Miscellaneous Chores
+
+* button ([f89f08a](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/commit/f89f08ad187ef6d6d741c083b0310045f3b4eafd))
+
 ### [0.4.2](https://www.github.com/brokeyourbike/fidelity-bank-api-client-php/compare/v0.4.1...v0.4.2) (2023-05-14)
 
 
